@@ -1,0 +1,33 @@
+{
+  "name": "darts",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "dev": "webpack-dev-server --content-base src-redux --inline --hot"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Skrpk/darts.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Skrpk/darts/issues"
+  },
+  "homepage": "https://github.com/Skrpk/darts#readme",
+  "dependencies": {
+    "babel": "^6.23.0",
+    "babel-plugin-react-html-attrs": "^2.0.0",
+    "babel-plugin-transform-class-properties": "^6.23.0",
+    "flux": "^3.1.2",
+    "history": "^4.5.1",
+    "react": "^15.4.2",
+    "react-dom": "^15.4.2",
+    "webpack-dev-server": "^2.3.0"
+  },
+  "exclude": [
+    "node-modules"
+  ]
+}
