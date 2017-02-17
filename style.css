@@ -1,0 +1,13 @@
+#wrapper {
+    width: 50%;
+    margin: 0 auto;
+    text-align: center;
+}
+
+#input-list {
+    padding: 0;
+}
+
+.btn {
+    margin: 1%;
+}
