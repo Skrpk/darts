@@ -1,5 +1,5 @@
 #wrapper {
-    width: 50%;
+    width: 60%;
     margin: 0 auto;
     text-align: center;
 }
@@ -9,7 +9,7 @@
 }
 
 .input-name {
-    width: 60%;
+    width: 50%;
 }
 
 .input-points {
@@ -18,7 +18,18 @@
 
 .form {
     display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    align-items: flex-start;
     margin: 1% 0;
+}
+
+.remove {
+    float: right;
+}
+
+.points {
+    padding: 1.4%;
 }
 
 .input-error {
