@@ -22,11 +22,13 @@ export default class Layout extends React.Component {
     }
 
     render () {
+        var { players } = this.props;
         var playersData = [];
         var key = 0;
         for(var player in this.props.players) {
-            playersData.push(<Input name={this.props.players[player].name} 
-                                    points={this.props.players[player].points}
+            playersData.push(<Input name={players[player].name}
+                                    points={players[player].points}
+                                    id={players[player].id}
                             key={key++}/>);
         }
         return <div id="wrapper">
