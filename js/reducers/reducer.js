@@ -5,19 +5,26 @@ export default function reducer(state={
     players: {}
 }, action) {
     const __DEFAULT_POINTS_ = 501;
+
     switch (action.type) {
         case "ADD_PLAYER": {
-            state.players[action.id] = {
+            var newPlayersObj = {...state.players};
+            newPlayersObj[action.id] = {
                 id: action.id,
                 name: action.name,
                 points: __DEFAULT_POINTS_
             };
-            return {...state};
+            return {...state, players: newPlayersObj};
         }
         case "DECREMENT_POINTS": {
             const points = state.points - action.pointsForDecr;
-            state.players[action.id].points = points;
-            return {...state};
+            var newPlayersObj = {...state.players};
+            newPlayersObj[action.id].points = points;
+            return {...state, players: newPlayersObj};
+        }
+        case "DELETE_PLAYER": {
+            delete state.players[action.id];
+            return {...state, players: Object.assign(state.players)};
         }
     }
 
