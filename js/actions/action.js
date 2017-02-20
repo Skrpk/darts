@@ -17,3 +17,10 @@ export function decrementPoints(id, points) {
         points
     }
 }
+
+export function deletePlayer(id) {
+    return {
+        type: "DELETE_PLAYER",
+        id
+    }
+}
