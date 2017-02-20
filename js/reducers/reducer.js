@@ -1,6 +1,21 @@
 /**
  * Created by user on 20.02.2017.
  */
+
+// method for deep cloning objects
+Object.deepExtend = function(destination, source) {
+    for (var property in source) {
+        if (typeof source[property] === "object" &&
+            source[property] !== null ) {
+            destination[property] = destination[property] || {};
+            arguments.callee(destination[property], source[property]);
+        } else {
+            destination[property] = source[property];
+        }
+    }
+    return destination;
+};
+
 export default function reducer(state={
     players: {}
 }, action) {
@@ -17,8 +32,8 @@ export default function reducer(state={
             return {...state, players: newPlayersObj};
         }
         case "DECREMENT_POINTS": {
-            const points = state.points - action.pointsForDecr;
-            var newPlayersObj = {...state.players};
+            const points = state.players[action.id].points - action.points;
+            var newPlayersObj = JSON.parse(JSON.stringify(state.players));
             newPlayersObj[action.id].points = points;
             return {...state, players: newPlayersObj};
         }
