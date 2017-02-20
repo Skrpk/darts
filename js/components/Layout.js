@@ -17,8 +17,8 @@ import { addPlayer } from "../actions/action";
 export default class Layout extends React.Component {
 
     componentWillMount() {
-        this.props.dispatch(addPlayer(Date.now(), 'Виталий'));
-        this.props.dispatch(addPlayer(Date.now(), 'Долбоёб'));
+        this.props.dispatch(addPlayer(Date.now(), ''));
+        this.props.dispatch(addPlayer(Date.now(), ''));
     }
 
     addPlayer () {

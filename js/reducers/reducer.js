@@ -38,8 +38,9 @@ export default function reducer(state={
             return {...state, players: newPlayersObj};
         }
         case "DELETE_PLAYER": {
-            delete state.players[action.id];
-            return {...state, players: Object.assign(state.players)};
+            var newPlayersObj = JSON.parse(JSON.stringify(state.players));
+            delete newPlayersObj[action.id];
+            return {...state, players: newPlayersObj};
         }
     }
 
