@@ -26,22 +26,19 @@ export default function reducer(state={
             var newPlayersObj = {...state.players};
             newPlayersObj[action.id] = {
                 id: action.id,
-                name: action.name,
+                name: action.name || '',
                 points: __DEFAULT_POINTS_
             };
-            
             return {...state, players: newPlayersObj};
         }
         case "DECREMENT_POINTS": {
             const points = state.players[action.id].points - action.points;
             var newPlayersObj = JSON.parse(JSON.stringify(state.players));
             newPlayersObj[action.id].points = points;
-            
             return {...state, players: newPlayersObj};
         }
         case "DELETE_PLAYER": {
             delete state.players[action.id];
-            
             return {...state, players: Object.assign(state.players)};
         }
     }

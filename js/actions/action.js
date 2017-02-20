@@ -10,7 +10,7 @@ export function addPlayer(id, name) {
     }
 }
 
-export function decrementPoints(id, points) {
+export function minusPoints(id, points) {
     return {
         type: "DECREMENT_POINTS",
         id,

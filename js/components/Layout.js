@@ -33,7 +33,8 @@ export default class Layout extends React.Component {
             playersData.push(<Input name={players[player].name}
                                     points={players[player].points}
                                     id={players[player].id}
-                            key={key++}/>);
+                                    key={key++}
+                                    tabindex={key}/>);
         }
         return <div id="wrapper">
             <h1>Enter players name</h1>

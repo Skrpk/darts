@@ -34,6 +34,7 @@ export default class Input extends React.Component {
                        placeholder="Enter player`s name"/>
                 <input class="form-control input-points"
                        onBlur={this.getPointsFromInput.bind(this)}
+                       tabIndex={this.props.tabindex}
                        placeholder="Enter points"/>
                 <button class="btn btn-success commit" onClick={this.minusPoints.bind(this)}>&#10004;</button>
                 <span class="points alert alert-info">{this.props.points}</span>
