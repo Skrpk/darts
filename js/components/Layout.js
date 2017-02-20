@@ -21,6 +21,10 @@ export default class Layout extends React.Component {
         this.props.dispatch(addPlayer(Date.now(), 'Долбоёб'));
     }
 
+    addPlayer () {
+        this.props.dispatch(addPlayer(Date.now()));
+    }
+
     render () {
         var { players } = this.props;
         var playersData = [];
@@ -36,7 +40,7 @@ export default class Layout extends React.Component {
             <ul id="input-list">
                 {playersData}
             </ul>
-            <button class="btn btn-success">Add player</button>
+            <button class="btn btn-success" onClick={this.addPlayer.bind(this)}>Add player</button>
         </div>;
     }
 };
