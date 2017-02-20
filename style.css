@@ -8,6 +8,15 @@
     padding: 0;
 }
 
-.btn {
-    margin: 1%;
+.input-name {
+    width: 60%;
+}
+
+.input-points {
+    width: 20%;
+}
+
+.form {
+    display: flex;
+    margin: 1% 0;
 }
