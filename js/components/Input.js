@@ -9,6 +9,9 @@ import { minusPoints, deletePlayer, setName } from "../actions/action";
 
 export default class Input extends React.Component {
 
+    /**
+     * @desc constructor. set`s state
+     */
     constructor () {
         super();
         this.state = {
@@ -16,6 +19,10 @@ export default class Input extends React.Component {
         }
     }
 
+    /**
+     * @desc triggering a points subtraction event
+     * @param e event
+     */
     minusPoints (e) {
         var pointsInput = e.classList ? e.previousSibling : e.target.previousSibling;
 
@@ -28,6 +35,10 @@ export default class Input extends React.Component {
         }
     }
 
+    /**
+     * @desc handler of pressing enter being focused on input of points
+     * @param event
+     */
     enterClick (event) {
         if (event.key === 'Enter') {
             var nextPointsInput = null;
@@ -44,6 +55,10 @@ export default class Input extends React.Component {
         }
     }
 
+    /**
+     * @desc gets and validate points value
+     * @param e
+     */
     getPointsFromInput (e) {
         const number = e.target.value;
         if ( (/^\d+$/.test(number) ||
@@ -55,29 +70,54 @@ export default class Input extends React.Component {
         }
     }
 
+    /**
+     * @desc trigger event of player deleting
+     * @param event
+     */
     removePlayer (event) {
         store.dispatch(deletePlayer(this.id));
     }
 
+    /**
+     * @desc enable name input after double clicking
+     * @param event
+     */
     enableInput (event) {
         event.target.disabled = false;
         event.target.focus();
     }
 
+    /**
+     * @desc disable name input after bluring
+     * @param event
+     */
     disableInput (event) {
         const target = event.target;
         target.disabled = true;
         store.dispatch(setName(this.id, target.value));
     }
 
+    /**
+     * @desc handler of changing of typed value in name input.
+     * @param e
+     * @private
+     */
     _handleChange (e){
         this.setState({name: e.target.value});
     }
 
+    /**
+     * @desc method calls when component receives new props
+     * @param nextProps props object
+     */
     componentWillReceiveProps (nextProps) {
         this.setState({name: nextProps.name});
     }
 
+    /**
+     * @desc rendering of component
+     * @returns {XML}
+     */
     render () {
         this.id = this.props.id;
         const { name } = this.state;
@@ -86,7 +126,7 @@ export default class Input extends React.Component {
                 <input class="form-control input-name"
                        onDoubleClick={this.enableInput.bind(this)}
                        onBlur={this.disableInput.bind(this)}
-                       value={name}
+                       value={name || this.props.name}
                        placeholder="Enter player`s name"
                        onChange={this._handleChange.bind(this)}
                 />

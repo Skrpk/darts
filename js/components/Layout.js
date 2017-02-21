@@ -15,16 +15,25 @@ import { addPlayer } from "../actions/action";
 })
 
 export default class Layout extends React.Component {
-
+    /**
+     * @desc add two players after loading
+     */
     componentWillMount() {
-        this.props.dispatch(addPlayer(Date.now(), ''));
-        this.props.dispatch(addPlayer(Date.now(), ''));
+        this.props.dispatch(addPlayer(Date.now(), 'Vitali'));
+        this.props.dispatch(addPlayer(Date.now(), 'Cheburashka'));
     }
 
+    /**
+     * @desc add player
+     */
     addPlayer () {
         this.props.dispatch(addPlayer(Date.now()));
     }
 
+    /**
+     * @desc component rendering method
+     * @returns {XML}
+     */
     render () {
         var { players } = this.props;
         var playersData = [];
