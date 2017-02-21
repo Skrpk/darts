@@ -42,6 +42,11 @@ export default function reducer(state={
             delete newPlayersObj[action.id];
             return {...state, players: newPlayersObj};
         }
+        case "SET_NAME": {
+            var newPlayersObj = JSON.parse(JSON.stringify(state.players));
+            newPlayersObj[action.id].name = action.name;
+            return {...state, players: newPlayersObj};
+        }
     }
 
     return state;

@@ -24,3 +24,11 @@ export function deletePlayer(id) {
         id
     }
 }
+
+export function setName (id, name) {
+    return {
+        type: "SET_NAME",
+        id,
+        name
+    }
+}

@@ -4,10 +4,18 @@
 import React from "react";
 import store from "../store";
 
-import { minusPoints, deletePlayer } from "../actions/action";
+import { minusPoints, deletePlayer, setName } from "../actions/action";
 
 
 export default class Input extends React.Component {
+
+    constructor () {
+        super();
+        this.state = {
+            name: ''
+        }
+    }
+
     minusPoints (e) {
         e.target.previousSibling.value = '';
         if (this.pointsForMinusing) {
@@ -25,28 +33,42 @@ export default class Input extends React.Component {
         }
     }
 
-    removePlayer () {
+    removePlayer (event) {
         store.dispatch(deletePlayer(this.id));
     }
 
     enableInput (event) {
-        debugger
         event.target.disabled = false;
         event.target.focus();
     }
 
     disableInput (event) {
-        event.target.disabled = true;
+        const target = event.target;
+        target.disabled = true;
+        if (target.value) {
+            store.dispatch(setName(this.id, target.value));
+        }
     }
 
-    render() {
+    _handleChange (e){
+        this.setState({name: e.target.value});
+    }
+
+    componentWillReceiveProps (nextProps) {
+        this.setState({name: nextProps.name});
+    }
+
+    render () {
         this.id = this.props.id;
+        const { name } = this.state;
         return (
             <li class="form">
                 <input class="form-control input-name"
                        onDoubleClick={this.enableInput.bind(this)}
                        onBlur={this.disableInput.bind(this)}
+                       value={name}
                        placeholder="Enter player`s name"
+                       onChange={this._handleChange.bind(this)}
                 />
                 <input class="form-control input-points"
                        onBlur={this.getPointsFromInput.bind(this)}
