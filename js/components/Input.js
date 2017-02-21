@@ -17,16 +17,36 @@ export default class Input extends React.Component {
     }
 
     minusPoints (e) {
-        e.target.previousSibling.value = '';
+        var pointsInput = e.classList ? e.previousSibling : e.target.previousSibling;
+
+        pointsInput.value = '';
+
         if (this.pointsForMinusing) {
             store.dispatch(minusPoints(this.id, this.pointsForMinusing));
             this.pointsForMinusing = '';
+            pointsInput.classList.remove('input-error');
+        }
+    }
+
+    enterClick (event) {
+        if (event.key === 'Enter') {
+            var nextPointsInput = null;
+            if (event.target.parentElement.nextSibling) {
+                nextPointsInput = event.target.parentElement.
+                                        nextSibling.getElementsByClassName('input-points')[0];
+            } else {
+                nextPointsInput = event.target.parentElement.
+                                parentElement.firstChild.getElementsByClassName('input-points')[0];
+            }
+            this.getPointsFromInput(event);
+            this.minusPoints(event.target.nextSibling);
+            nextPointsInput.focus();
         }
     }
 
     getPointsFromInput (e) {
         const number = e.target.value;
-        if ( /^\d+$/.test(number) ) {
+        if ( /^\d+$/.test(number) || number === '') {
             this.pointsForMinusing = Number(number);
         } else {
             e.target.classList.add('input-error');
@@ -45,9 +65,7 @@ export default class Input extends React.Component {
     disableInput (event) {
         const target = event.target;
         target.disabled = true;
-        if (target.value) {
-            store.dispatch(setName(this.id, target.value));
-        }
+        store.dispatch(setName(this.id, target.value));
     }
 
     _handleChange (e){
@@ -73,6 +91,7 @@ export default class Input extends React.Component {
                 <input class="form-control input-points"
                        onBlur={this.getPointsFromInput.bind(this)}
                        tabIndex={this.props.tabindex}
+                       onKeyPress={this.enterClick.bind(this)}
                        placeholder="Enter points"/>
                 <button class="btn btn-success commit" onClick={this.minusPoints.bind(this)}>&#10004;</button>
                 <span class="points alert alert-info">{this.props.points}</span>
