@@ -46,7 +46,9 @@ export default class Input extends React.Component {
 
     getPointsFromInput (e) {
         const number = e.target.value;
-        if ( /^\d+$/.test(number) || number === '') {
+        if ( (/^\d+$/.test(number) ||
+                number === '') &&
+                Number(number) <= this.props.points) {
             this.pointsForMinusing = Number(number);
         } else {
             e.target.classList.add('input-error');
