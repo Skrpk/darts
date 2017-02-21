@@ -12,6 +12,10 @@
     width: 50%;
 }
 
+.form-control[disabled] {
+    cursor: pointer;
+}
+
 .input-points {
     width: 23%;
 }

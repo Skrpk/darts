@@ -32,6 +32,7 @@ export default class Input extends React.Component {
     enableInput (event) {
         debugger
         event.target.disabled = false;
+        event.target.focus();
     }
 
     disableInput (event) {
