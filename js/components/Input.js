@@ -61,11 +61,29 @@ export default class Input extends React.Component {
      */
     getPointsFromInput (e) {
         const number = e.target.value;
-        if ( (/^\d+$/.test(number) ||
+        var pointsValue = 0;
+        try {
+            if ( /\+/.test(number)) {
+                const RegEx=/\s/g,
+                    arrayOfNumbers = (number.replace(RegEx, '')).split('+');
+
+                pointsValue = arrayOfNumbers.reduce((sum, current) => {
+                    if ( /^\d+$/.test(current) && /^\d+$/.test(sum)) {
+                        return Number(sum) + Number(current);
+                    } else {
+                        throw Error();
+                    }
+                });
+            } else if ( (/^\d+$/.test(number) ||
                 number === '') &&
                 Number(number) <= this.props.points) {
-            this.pointsForMinusing = Number(number);
-        } else {
+                pointsValue = Number(number);
+            } else {
+                throw Error();
+            }
+
+            this.pointsForMinusing = pointsValue;
+        } catch (error) {
             e.target.classList.add('input-error');
         }
     }
