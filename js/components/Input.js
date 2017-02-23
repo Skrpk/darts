@@ -156,7 +156,7 @@ export default class Input extends React.Component {
                 <input class="form-control input-name"
                        onDoubleClick={this.enableInput.bind(this)}
                        onBlur={this.disableInput.bind(this)}
-                       value={name || this.props.name}
+                       value={name ||  this.props.name}
                        ref={(input) => { this.nameInput = input; }}
                        placeholder="Enter player`s name"
                        onChange={this._handleChange.bind(this)}
@@ -167,7 +167,7 @@ export default class Input extends React.Component {
                        onKeyPress={this.enterClick.bind(this)}
                        placeholder="Enter points"/>
                 <button class="btn btn-success commit" onClick={this.minusPoints.bind(this)}>&#10004;</button>
-                <span class="points alert alert-info">{this.props.points}</span>
+                <span class="points">{this.props.points}</span>
                 <button class="btn btn-danger remove" onClick={this.removePlayer.bind(this)}>&#10006;</button>
             </li>
         );
