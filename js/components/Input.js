@@ -15,7 +15,8 @@ export default class Input extends React.Component {
     constructor () {
         super();
         this.state = {
-            name: ''
+            name: '',
+            disableInput: true
         };
     }
 
@@ -54,6 +55,14 @@ export default class Input extends React.Component {
             nextPointsInput.focus();
         }
     }
+
+    /**
+     * @desc lock name inputs after loading
+     */
+    componentDidMount() {
+        this.nameInput.disabled = true;
+    }
+
 
     /**
      * @desc gets and validate points value
@@ -148,8 +157,8 @@ export default class Input extends React.Component {
                        onDoubleClick={this.enableInput.bind(this)}
                        onBlur={this.disableInput.bind(this)}
                        value={name || this.props.name}
+                       ref={(input) => { this.nameInput = input; }}
                        placeholder="Enter player`s name"
-                       onLoad={this.disableInput.bind(this)}
                        onChange={this._handleChange.bind(this)}
                 />
                 <input class="form-control input-points"
