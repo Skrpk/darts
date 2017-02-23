@@ -2,9 +2,8 @@
  * Created by user on 16.02.2017.
  */
 var debug = process.env.NODE_ENV !== 'production';
-
-import webpack from 'webpack';
-import path from 'path';
+var webpack = require('webpack');
+var path = require('path');
 
 module.exports = {
     context: __dirname,
