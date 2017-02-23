@@ -4,31 +4,31 @@
 
 export function addPlayer(id, name) {
     return {
-        type: "ADD_PLAYER",
+        type: 'ADD_PLAYER',
         id,
         name
-    }
+    };
 }
 
 export function minusPoints(id, points) {
     return {
-        type: "DECREMENT_POINTS",
+        type: 'DECREMENT_POINTS',
         id,
         points
-    }
+    };
 }
 
 export function deletePlayer(id) {
     return {
-        type: "DELETE_PLAYER",
+        type: 'DELETE_PLAYER',
         id
-    }
+    };
 }
 
 export function setName (id, name) {
     return {
-        type: "SET_NAME",
+        type: 'SET_NAME',
         id,
         name
-    }
+    };
 }

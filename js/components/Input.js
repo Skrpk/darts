@@ -1,10 +1,10 @@
 /**
  * Created by user on 20.02.2017.
  */
-import React from "react";
-import store from "../store";
+import React from 'react';
+import store from '../store';
 
-import { minusPoints, deletePlayer, setName } from "../actions/action";
+import { minusPoints, deletePlayer, setName } from '../actions/action';
 
 
 export default class Input extends React.Component {
@@ -16,7 +16,7 @@ export default class Input extends React.Component {
         super();
         this.state = {
             name: ''
-        }
+        };
     }
 
     /**
@@ -74,7 +74,7 @@ export default class Input extends React.Component {
      * @desc trigger event of player deleting
      * @param event
      */
-    removePlayer (event) {
+    removePlayer () {
         store.dispatch(deletePlayer(this.id));
     }
 
@@ -91,10 +91,13 @@ export default class Input extends React.Component {
      * @desc disable name input after bluring
      * @param event
      */
+
     disableInput (event) {
         const target = event.target;
         target.disabled = true;
-        store.dispatch(setName(this.id, target.value));
+        if (target.value === this.props.name) {
+            store.dispatch(setName(this.id, target.value));
+        }
     }
 
     /**
@@ -128,6 +131,7 @@ export default class Input extends React.Component {
                        onBlur={this.disableInput.bind(this)}
                        value={name || this.props.name}
                        placeholder="Enter player`s name"
+                       onLoad={this.disableInput.bind(this)}
                        onChange={this._handleChange.bind(this)}
                 />
                 <input class="form-control input-points"

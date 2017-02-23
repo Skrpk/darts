@@ -1,14 +1,15 @@
 /**
  * Created by user on 16.02.2017.
  */
-var debug = process.env.NODE_ENV !== "production";
-var webpack = require('webpack');
-var path = require('path');
+var debug = process.env.NODE_ENV !== 'production';
+
+import webpack from 'webpack';
+import path from 'path';
 
 module.exports = {
     context: __dirname,
-    devtool: debug ? "inline-sourcemap" : null,
-    entry: "./js/client.js",
+    devtool: debug ? 'inline-sourcemap' : null,
+    entry: './js/client.js',
     module: {
         loaders: [
             {
@@ -23,8 +24,8 @@ module.exports = {
         ]
     },
     output: {
-        path: __dirname + "/",
-        filename: "client.min.js"
+        path: __dirname + '/',
+        filename: 'client.min.js'
     },
     plugins: debug ? [] : [
         new webpack.optimize.DedupePlugin(),
