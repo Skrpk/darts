@@ -122,7 +122,7 @@ export default class Input extends React.Component {
     disableInput (event) {
         const target = event.target;
         target.disabled = true;
-        if (target.value === this.props.name) {
+        if (target.value !== this.props.name) {
             store.dispatch(setName(this.id, target.value));
         }
     }
